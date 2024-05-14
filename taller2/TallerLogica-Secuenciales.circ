@@ -128,7 +128,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="en_out"/>
     </comp>
-    <comp lib="0" loc="(680,150)" name="Pin">
+    <comp lib="0" loc="(420,60)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="Reg_Debug"/>
@@ -162,10 +162,10 @@
     <wire from="(420,150)" to="(430,150)"/>
     <wire from="(420,220)" to="(420,290)"/>
     <wire from="(420,220)" to="(440,220)"/>
+    <wire from="(420,60)" to="(420,150)"/>
     <wire from="(440,160)" to="(440,220)"/>
     <wire from="(450,150)" to="(590,150)"/>
     <wire from="(590,150)" to="(590,220)"/>
-    <wire from="(590,150)" to="(680,150)"/>
     <wire from="(590,220)" to="(680,220)"/>
   </circuit>
   <circuit name="registro_4bytes_salida">
