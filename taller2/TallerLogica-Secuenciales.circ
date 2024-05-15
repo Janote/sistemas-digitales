@@ -173,7 +173,7 @@
     <a name="circuit" val="registro_4bytes_salida"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
-    <comp lib="0" loc="(180,400)" name="Pin">
+    <comp lib="0" loc="(160,420)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="clk"/>
     </comp>
@@ -182,36 +182,113 @@
       <a name="label" val="Reg4_in"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(330,480)" name="Pin">
+    <comp lib="0" loc="(240,190)" name="Splitter">
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="0" loc="(280,480)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="w"/>
     </comp>
-    <comp lib="0" loc="(400,510)" name="Pin">
+    <comp lib="0" loc="(300,510)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="en_out"/>
     </comp>
-    <comp lib="0" loc="(620,120)" name="Pin">
+    <comp lib="0" loc="(750,50)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="0" loc="(760,50)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="Reg4_Debug"/>
       <a name="output" val="true"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(620,190)" name="Pin">
+    <comp lib="0" loc="(830,210)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="0" loc="(850,210)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="Reg4_output"/>
       <a name="output" val="true"/>
       <a name="width" val="4"/>
     </comp>
-    <wire from="(180,400)" to="(220,400)"/>
+    <comp loc="(580,170)" name="registro_salida_restringida"/>
+    <comp loc="(580,290)" name="registro_salida_restringida"/>
+    <comp loc="(580,410)" name="registro_salida_restringida"/>
+    <comp loc="(580,50)" name="registro_salida_restringida"/>
+    <wire from="(160,420)" to="(300,420)"/>
     <wire from="(200,190)" to="(240,190)"/>
-    <wire from="(330,480)" to="(360,480)"/>
-    <wire from="(360,460)" to="(360,480)"/>
-    <wire from="(400,510)" to="(430,510)"/>
-    <wire from="(430,460)" to="(430,510)"/>
-    <wire from="(600,120)" to="(620,120)"/>
-    <wire from="(600,190)" to="(620,190)"/>
+    <wire from="(260,160)" to="(340,160)"/>
+    <wire from="(260,170)" to="(290,170)"/>
+    <wire from="(260,180)" to="(280,180)"/>
+    <wire from="(260,70)" to="(260,150)"/>
+    <wire from="(260,70)" to="(360,70)"/>
+    <wire from="(280,180)" to="(280,430)"/>
+    <wire from="(280,430)" to="(360,430)"/>
+    <wire from="(280,480)" to="(310,480)"/>
+    <wire from="(290,170)" to="(290,310)"/>
+    <wire from="(290,310)" to="(360,310)"/>
+    <wire from="(300,170)" to="(300,290)"/>
+    <wire from="(300,170)" to="(360,170)"/>
+    <wire from="(300,290)" to="(300,410)"/>
+    <wire from="(300,290)" to="(360,290)"/>
+    <wire from="(300,410)" to="(300,420)"/>
+    <wire from="(300,410)" to="(360,410)"/>
+    <wire from="(300,50)" to="(300,170)"/>
+    <wire from="(300,50)" to="(360,50)"/>
+    <wire from="(300,510)" to="(320,510)"/>
+    <wire from="(310,210)" to="(310,330)"/>
+    <wire from="(310,210)" to="(360,210)"/>
+    <wire from="(310,330)" to="(310,450)"/>
+    <wire from="(310,330)" to="(360,330)"/>
+    <wire from="(310,450)" to="(310,480)"/>
+    <wire from="(310,450)" to="(360,450)"/>
+    <wire from="(310,90)" to="(310,210)"/>
+    <wire from="(310,90)" to="(360,90)"/>
+    <wire from="(320,110)" to="(320,230)"/>
+    <wire from="(320,110)" to="(360,110)"/>
+    <wire from="(320,230)" to="(320,350)"/>
+    <wire from="(320,230)" to="(360,230)"/>
+    <wire from="(320,350)" to="(320,470)"/>
+    <wire from="(320,350)" to="(360,350)"/>
+    <wire from="(320,470)" to="(320,510)"/>
+    <wire from="(320,470)" to="(360,470)"/>
+    <wire from="(340,160)" to="(340,190)"/>
+    <wire from="(340,190)" to="(360,190)"/>
+    <wire from="(360,290)" to="(370,290)"/>
+    <wire from="(580,170)" to="(640,170)"/>
+    <wire from="(580,190)" to="(650,190)"/>
+    <wire from="(580,290)" to="(670,290)"/>
+    <wire from="(580,310)" to="(710,310)"/>
+    <wire from="(580,410)" to="(690,410)"/>
+    <wire from="(580,430)" to="(750,430)"/>
+    <wire from="(580,50)" to="(630,50)"/>
+    <wire from="(580,70)" to="(810,70)"/>
+    <wire from="(630,10)" to="(630,50)"/>
+    <wire from="(630,10)" to="(730,10)"/>
+    <wire from="(640,20)" to="(640,170)"/>
+    <wire from="(640,20)" to="(730,20)"/>
+    <wire from="(650,180)" to="(650,190)"/>
+    <wire from="(650,180)" to="(810,180)"/>
+    <wire from="(670,30)" to="(670,290)"/>
+    <wire from="(670,30)" to="(730,30)"/>
+    <wire from="(690,40)" to="(690,410)"/>
+    <wire from="(690,40)" to="(730,40)"/>
+    <wire from="(710,190)" to="(710,310)"/>
+    <wire from="(710,190)" to="(810,190)"/>
+    <wire from="(750,200)" to="(750,430)"/>
+    <wire from="(750,200)" to="(810,200)"/>
+    <wire from="(750,50)" to="(760,50)"/>
+    <wire from="(810,70)" to="(810,170)"/>
+    <wire from="(830,210)" to="(850,210)"/>
   </circuit>
   <circuit name="ALU_regs">
     <a name="appearance" val="custom"/>
