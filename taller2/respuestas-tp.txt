@@ -160,3 +160,75 @@ prestamos atencion podemos sobreescribir valores y luego esto preste a confusion
 
 
 
+CHECKPOINT 3 :
+
+
+3)A)a) ¿Cu ́ales son y qu ́e respresenta cada entrada y cada salida del componente?¿Cu ́ales
+entradas deben ser consideradas como de control?
+
+Las entradas Reg_i_Write, Reg_i_enable out   0 <= i <=3, Representan si para ese Registro, se debe utilizar
+write para guardar el valor de force_input en Debug y en Out Reg_i_enable esta habilitado.
+
+Luego tenemos entradas las entradas de control ALU_A/B/ENABLEOUT, entrada de clock, OP que son dos digitos y que a la vez es una entrada de la ALU del taller pasado.
+
+Las salidas son las del taller pasado, donde:
+el resultado es cero ⇔ Z vale 1
+la suma binaria produjo acarreo ⇔ C vale 1
+2
+la suma interpretada en complemento a 2 dio overflow ⇔ V vale 1
+el resultado interpretado en complemento a 2 es negativo ⇔ N vale 1
+
+
+b) ¿Que informacion muestra cada display y c ́omo es interpretada esta informacion?
+
+La informacion que muestra en c/Display de los Debug's de los registros
+ son cada numero de 4 bits, segun este activado el clock y el Writing Mode.
+
+Los debugs de las ALU'S :
+
+En el caso del A y el B, ambos debugs  hacen referencia al output de los anteriores registros, donde c/u de ellos tienen que ser
+iguales o que no este activado el enable , tal que cuando se produzca la subida del clock, ya  que si no estariamos en Hi-Z y no representaria ningun 
+valor.
+
+El S-Debug depende totalmente del OP , ya que con este hacemos referencia a que operacion queremos referenciarnos.
+
+
+4)c : 
+Escribir la secuencia de activaci´on y desactivaci´on de se˜nales para cargar el valor 4
+en el registro R2 y el -3 en el registro R3.
+
+Parto de que todo esta en 0: 
+
+Seteo el valor -3 en Reg_in (1100)
+activo WRITE EN R3
+hago un flanco de bajada y luego de subida en el clock;
+
+desactivo WRITE EN R3
+Seteo el valor 4 en Reg_in (0100)
+activo WRITE EN R2
+hago un flanco de bajada y luego de subida en el clock;
+
+
+4)d) 
+
+Cargar los siguientes pares de valores en R0 y R1 respectivamente, con las operaciones
+indicadas:
+
+11 OR
+01 RESTA
+00 ADD
+10 AND
+
+1) (4, 0), OR, SUB
+2) (7, -1), SUB, AND
+3) (-8, -2), ADD, SUB
+4) (8, -9), OR, AND
+Realizar las dos operaciones indicadas y guardar los resultados en R2 y R3 respecti-
+vamente. Para el primer caso, escribir la secuencia completa de activaci ́on de se ̃nales.
+e) ¿Por qu ́e se niega la se ̃nal clk en la ALU antes de pasarle este valor al registro de
+salida?
+
+
+
+
+
