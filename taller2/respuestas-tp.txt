@@ -106,3 +106,57 @@ Reg_Debug: Representa como funciona un flip-flop del tipo 'D' , almacenando valo
 
 2)b)
 
+Secuencia: Vamos a partir del caso en que todos los inputs son 0.
+
+Establezco un 1 en w.
+en_force_input 1;
+en_force_input 1;
+clk en 1;
+
+
+2)C)
+
+Suponer para un valor: Pongo R0 en 1(mismos pasos que en el 2)b) Y todos los demas inputs estan en 0.
+
+
+
+\\ CONSIGNAS \\ 
+\\un valor arbitrario en R0, luego que este valor se transfiera a R1. \\
+
+
+utilizo el writing mode en R1.
+
+
+Pongo en 1 en_force_input Y force_input 
+
+
+hago un flanco de bajada y luego de subida en el clock.
+
+\\ Luego que el valor de R2 pase a R0 \\ 
+
+desactivo modo escritura R1.
+
+activo la escritura en R0
+
+PONGO EN 0 en_force_input
+
+
+hago un flanco de bajada y luego de subida en el clock.
+
+
+\\ Finalmente el valor de R1 a R2. \\ 
+
+desactivo modo escritura R0
+
+activo modo escritura R2
+
+en_force_input a 1;
+
+hago un flanco de bajada y luego de subida en el clock.;
+
+
+GENERALIZANDO: lo que podemos ver es que tenemos que tener muy en cuenta el Writing mode, ya que si no
+prestamos atencion podemos sobreescribir valores y luego esto preste a confusiones.
+
+
+
