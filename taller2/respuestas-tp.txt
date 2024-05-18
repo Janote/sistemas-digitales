@@ -225,10 +225,14 @@ indicadas:
 4) (8, -9), OR, AND
 Realizar las dos operaciones indicadas y guardar los resultados en R2 y R3 respecti-
 vamente. Para el primer caso, escribir la secuencia completa de activaci ́on de se ̃nales.
-e) ¿Por qu ́e se niega la se ̃nal clk en la ALU antes de pasarle este valor al registro de
+e) ¿Por que se niega la se ̃nal clk en la ALU antes de pasarle este valor al registro de
 salida?
 
+Se niega la senal de clock ya que interpretamos que las operaciones se hacen en cada pulso , los cambios los hace cuando esta arriba 
+y cuando baja 
 
 
 
 
+
+    
