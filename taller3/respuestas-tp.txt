@@ -39,7 +39,10 @@ c)0062f333
 0000000 00110 00101 111 00110 0110011
 
 Guarda en el registro 6 ,la operacion logica bit a bit con el valor dentro del registro 6 que es 1 con el que 
-esta en el registro 5, guarda en el registro 6 ; 
+esta en el registro 5, que es 7. Guarda en el registro 6 , el resultado de la operacion que es 1
+
+
+
 
 0000 0000 0000 0000 0000 0000 0000 0000 0111 r5
 0000 0000 0000 0000 0000 0000 0000 0000 0001 r6 
@@ -54,7 +57,6 @@ esta en el registro 5, guarda en el registro 6 ;
 d)
 00030463
 
-0000000 00000 00110 000 01000 1100011
 
 0000000 00000 00110 000 01000 1100011 
 
@@ -65,11 +67,12 @@ desgloso el offset:
 
 
 
-Si el  valor del registro zero == registro 6 (que es falso),  el pc apunta a su valor actual mas el offset , que es : 
+Si el  valor del registro zero == registro 6 (que es falso),  el pc apunta a su valor actual mas el offset , que es 4.
+
 
 Inmediato == offset: 00000000000100 = 4
 
-entonces el pc apunta a la proxima instruccion si se cumple la condicion
+entonces el pc apunta a la proxima instruccion si se cumple la condicion o no.
 
 
 
@@ -84,12 +87,15 @@ e)
 
 // instruccion addi
 
-el registro destino (r5) , sera lo que vale el r3(que es cero) + el inmediato, que es 2^12 + 2^11 + 2^10 + 2^... + 2^0 .
-esto lo hara si y solo si el registro 5 era igual  al registro cero, ya que el PC apuntaba alli.
+el registro destino (r5) , sera lo que vale el r5(que es siete) + el inmediato, que es 2^12 + 2^11 + 2^10 + 2^... + 2^0 . = 8197 ; va ser r5= 8198
+esto lo hara sin importar si el registro 6 era igual  al registro cero, ya que el PC apuntaba all de todas formas.
+
 
 
 
 f)
+
+
 4012d293
 
 SRAI
@@ -98,16 +104,18 @@ SRAI
 010000 000001 00101 101 00101 0010011
 
 
-Como en nuestro caso no es el r6 == zero , no ejecutamos esa linea asi que el valor de r5 = 7.
-
-Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicion a la derecha el valor que tenia almacenado, que era 8191(decimal)
-
-r5 :  0000 0000 0000 0000 0000 0000 0000 0111;
 
 
-Su mayor cifra significativa es el 1 , rellenara con 1' a la izquierda
 
-r5 : 1000 0000 0000 0000 0000 0000 0000 0011;
+Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicion a la derecha el valor que tenia almacenado, que era 8198(decimal)
 
-r5 = 2147483523
+R5 : 0000000000000000001000000000011
+
+
+
+Su mayor cifra significativa es el 1 , rellenara con 1' a la izquierda solo una vez porque el shamt == 1 
+
+R5 : 100000000000000000100000000001;
+
+r5 = 2147483647
 
