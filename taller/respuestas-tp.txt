@@ -1,0 +1,113 @@
+00: 00700293
+04: 00100313
+08: 0062f333
+0c: 00030463
+10: fff28293
+14: 4012d293
+
+
+
+1)a
+
+// addi 
+
+000000000111 00000 000 00101 0010011
+
+
+000000000111 00000 000 00101 0010011
+
+Guarda el 7(valor inmediato) + lo que estaba en el registro 0 , que es cero. Entonces guarda en el registro 5 el 7.
+
+
+b)
+
+000000000001 00000 000 00110 0010011
+
+
+000000000001 00000 000 00110 0010011
+
+El registro 6 sera el resultado de sumar 0 + 1 , donde 1 es el valor inmediato y cero es por el registro zero;
+
+
+
+
+c)0062f333
+
+0000000 00110 00101 111 00110 0110011
+
+
+0000000 00110 00101 111 00110 0110011
+
+Guarda en el registro 6 ,la operacion logica bit a bit con el valor dentro del registro 6 que es 1 con el que 
+esta en el registro 5, guarda en el registro 6 ; 
+
+0000 0000 0000 0000 0000 0000 0000 0000 0111 r5
+0000 0000 0000 0000 0000 0000 0000 0000 0001 r6 
+0000 0000 0000 0000 0000 0000 0000 0000 0001 r6 despues de la operacion
+
+
+
+
+
+
+
+d)
+00030463
+
+0000000 00000 00110 000 01000 1100011
+
+0000000 00000 00110 000 01000 1100011 
+
+
+desgloso el offset:
+
+000000000100 : 4
+
+
+
+Si el  valor del registro zero == registro 6 (que es falso),  el pc apunta a su valor actual mas el offset , que es : 
+
+Inmediato == offset: 00000000000100 = 4
+
+entonces el pc apunta a la proxima instruccion si se cumple la condicion
+
+
+
+e)
+
+// tipo inmediato;
+
+
+
+111111111111 00101 000 00101 0010011
+
+
+// instruccion addi
+
+el registro destino (r5) , sera lo que vale el r3(que es cero) + el inmediato, que es 2^12 + 2^11 + 2^10 + 2^... + 2^0 .
+esto lo hara si y solo si el registro 5 era igual  al registro cero, ya que el PC apuntaba alli.
+
+
+
+f)
+4012d293
+
+SRAI
+
+010000 000001 00101 101 00101 0010011
+010000 000001 00101 101 00101 0010011
+
+
+Como en nuestro caso no es el r6 == zero , no ejecutamos esa linea asi que el valor de r5 = 7.
+
+Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicion a la derecha el valor que tenia almacenado, que era 8191(decimal)
+
+r5 :  0000 0000 0000 0000 0000 0000 0000 0111;
+
+
+Su mayor cifra significativa es el 1 , rellenara con 1' a la izquierda
+
+r5 : 1000 0000 0000 0000 0000 0000 0000 0011;
+
+r5 = 2147483523
+
