@@ -125,15 +125,33 @@ li a0,4228 	#carga el valor 4228 en registro a0
 li a1,2114	#carga el valor 2214 en registro a1
 jal ra, resta	#salto incondicional a resta y asigna ra a PC + 4 (en este caso 0x0000000C)
 fin: beq zero, zero, fin	#en este ultimo tramo el programa cae en un loop infinito (pues 0 == 0)
-resta:
-prologo: addi sp, sp,-4	#hago espacio en el stack para una palabra
+resta: prologo: addi sp, sp,-4	#hago espacio en el stack para una palabra
 sw ra,0(sp)		#cargo el ra en el espacio que creó la instrucción previa
 sub a0,a0,a1		#guardo la resta a0 - a1 en a0
-beq a0,zero,epilogo	#si a0 == 0 salto a epilogo
-sigo:			
-jal ra, resta		#salto a resta y asigno ra a PC + 4 (0x00000028)
-epilogo:		
-lw ra, 0(sp)		#guardo en ra la ultima palabra insertada en el stack
+beq a0,zero,epilogo	#si a0 == 0 salto a epilogo	
+sigo:jal ra, resta	#salto a resta y asigno ra a PC + 4 (0x0000002C)		
+epilogo:lw ra, 0(sp)	#guardo en ra la ultima palabra insertada en el stack
 addi sp, sp,4		#libero el espacio que ocupaba la ultima palabra insertada en el stack
 ret			#vuelvo al ra
+
+a) Posiciones de memoria de cada etiqueta:
+fin 		0x0000000C
+resta y prologo	0x00000010
+sigo 		0x00000028
+epilogo		0x0000002C
+
+b) Desplazamiento de llamadas a etiquetas:
+La primera llamada a una etiqueta se hace en la instrucción "jal ra, resta".
+De ahí se pasa a la instrucción inmediatamente siguiente (que es prologo y sus instrucciones).
+En la primera iteración, a0 (4228) - a1 (2114) != 0 con lo cual "beq a0,zero,epilogo" no salta a epilogo y en cambio sigue en la etiqueta "sigo".
+En "sigo", volvemos a resta y en esta iteracion a0 (2114) - a1 (2114) == 0 de manera que saltamos a "epilogo", se ejecuta el ret, volvemos a "epilogo" una vez más y 
+el ra nos lleva a "fin" que, dado que zero == zero siempre va a ser cierto, se va a llamar a sí mismo continuamente.
+
+c)
+
+
+
+
+
+
 
