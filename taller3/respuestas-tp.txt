@@ -137,8 +137,8 @@ ret			#vuelvo al ra
 a) Posiciones de memoria de cada etiqueta:
 fin 		0x0000000C
 resta y prologo	0x00000010
-sigo 		0x00000028
-epilogo		0x0000002C
+sigo 		0x00000020
+epilogo		0x00000024
 
 b) Desplazamiento de llamadas a etiquetas:
 La primera llamada a una etiqueta se hace en la instrucción "jal ra, resta".
@@ -147,7 +147,25 @@ En la primera iteración, a0 (4228) - a1 (2114) != 0 con lo cual "beq a0,zero,ep
 En "sigo", volvemos a resta y en esta iteracion a0 (2114) - a1 (2114) == 0 de manera que saltamos a "epilogo", se ejecuta el ret, volvemos a "epilogo" una vez más y 
 el ra nos lleva a "fin" que, dado que zero == zero siempre va a ser cierto, se va a llamar a sí mismo continuamente.
 
-c)
+c) Tanto li como addi precisan de inmediatos de 12 bits. Esto nos permite representar números con signo en un rango de -2048 a 2047 (o 100000000000 a 011111111111, en binario)
+
+d) Para cargar numeros que exceden ese rango hace falta utilizar lui para cargar los 20 bits superiores y posteriormente cargar los 12 bits inferiores restantes con addi.
+
+e) a1 se mantiene en 2114.
+
+f) Al final, PC es 0x0000000C.
+
+g) (Se asume que todos los valores siguientes están en hexa):
+00 -> 04 -> 08 (salta a resta)-> 10 -> 14 -> 18 -> 1C (no se verifica a0 == zero) -> 20 (salta a resta)
+-> 10 -> 14 -> 18 -> 1C (se verifica a0 == zero, por eso salta a epilogo) -> 24 -> 28 -> 2C (vuelve al ultimo ra insertado, es decir el 20 + 4)
+-> 24 -> 28 -> 2C (vuelve al ultimo ra insertado, es decir el 08 + 4) -> 0C -> 0C -> ... -> 0C
+
+
+
+
+
+
+
 
 
 
