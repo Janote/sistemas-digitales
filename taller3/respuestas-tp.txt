@@ -178,11 +178,11 @@ i)Habría que reemplazar la instrucción 04 por: srai a1, a0, 1
 
 3a)
 <main>:
-addi x11 x0 4	#asigno el valor cuatro (decimal) al registro x11 (a1)
-lw x12 0 x11	#asigno lo que hay en el espacio de memoria 0x4 a a2 (que es 0 por la suposición de que todo espacio de memoria no especificado es 0)
-addi x13 x0 4	#asigno 4 a a3
-lw x13 0 x13	#asigno 0 a a3
-lw x13 0 x13	#asigno 0 a a3
+addi x11 x0 4	#asigno el valor cuatro (decimal) al registro x11 
+lw x12 0 x11	#asigno lo que hay en el espacio de memoria 0x4 a x12 (que es 0 por la suposición de que todo espacio de memoria no especificado es 0)
+addi x13 x0 4	#asigno 4 a x13
+lw x13 0 x13	#asigno 0 a x13
+lw x13 0 x13	#asigno 0 a x13
 beq x12 x13 -20 <main>	#Como a2 == a3 entonces vuelve a main
 
 <guardar>:
@@ -196,6 +196,25 @@ addi x10 x0 0
 addi x17 x0 93
 ecall
 
+3b)
+<main>:
+addi x11 x0 4	#asigno el valor 0x04  al registro x11 
+lw x12 0 x11	#cargo el contenido del espacio de memoria 0x04 (que es 0005a603) en x12
+addi x13 x0 4	#asigno el valor 0x04  al registro x13
+lw x13 0 x13	#cargo el contenido del espacio de memoria 0x04 (que es 0005a603) en x13
+lw x13 0 x13	#cargo el contenido del espacio de memoria 0x0005a603 (que es 0 por no estar definido) en x13
+beq x12 x13 -20 <main>	#x12 =! x13 (pues 0005a603 != 0) entonces sigo por PC + 4
+
+<guardar>:
+lui x14 0xfffa6	#Cargo como la parte alta (primeros 20 bits) del registro x14
+addi x14 x14 -1539	#Cargo los 12 bits más bajos (0x1fd) en x14 (o sea, x14 pasa a ser 0xfffa51fd)
+add x12 x14 x12	#Asigno x12 a 0xfffff800 (0xfffa51fd + 0x0005a603)
+sw x11 40 x12	#Asigno 0x0 a x11 pues no está definido el espacio de memoria 0xfffff800 + 0x28
+
+<fin_programar>:
+addi x10 x0 0	#Asigno 0 a x10
+addi x17 x0 93	#Asigno x17 a 93
+ecall		#ecall 93 termina la ejecución
 
 
 
