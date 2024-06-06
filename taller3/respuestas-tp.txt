@@ -121,18 +121,18 @@ r5 = 2147483647
 
 
 2.
-li a0,4228 	#carga el valor 4228 en registro a0
-li a1,2114	#carga el valor 2214 en registro a1
-jal ra, resta	#salto incondicional a resta y asigna ra a PC + 4 (en este caso 0x0000000C)
-fin: beq zero, zero, fin	#en este ultimo tramo el programa cae en un loop infinito (pues 0 == 0)
-resta: prologo: addi sp, sp,-4	#hago espacio en el stack para una palabra
-sw ra,0(sp)		#cargo el ra en el espacio que creó la instrucción previa
-sub a0,a0,a1		#guardo la resta a0 - a1 en a0
-beq a0,zero,epilogo	#si a0 == 0 salto a epilogo	
-sigo:jal ra, resta	#salto a resta y asigno ra a PC + 4 (0x0000002C)		
-epilogo:lw ra, 0(sp)	#guardo en ra la ultima palabra insertada en el stack
-addi sp, sp,4		#libero el espacio que ocupaba la ultima palabra insertada en el stack
-ret			#vuelvo al ra
+00	li a0,4228 	#carga el valor 4228 en registro a0
+04 	li a1,2114	#carga el valor 2214 en registro a1
+08	jal ra, resta	#salto incondicional a resta y asigna ra a PC + 4 (en este caso 0x0000000C)
+0C	fin: beq zero, zero, fin	#en este ultimo tramo el programa cae en un loop infinito (pues 0 == 0)
+10	resta: prologo: addi sp, sp,-4	#hago espacio en el stack para una palabra
+14	sw ra,0(sp)		#cargo el ra en el espacio que creó la instrucción previa
+18	sub a0,a0,a1		#guardo la resta a0 - a1 en a0
+1C	beq a0,zero,epilogo	#si a0 == 0 salto a epilogo	
+20	sigo:jal ra, resta	#salto a resta y asigno ra a PC + 4 (0x0000002C)		
+24	epilogo:lw ra, 0(sp)	#guardo en ra la ultima palabra insertada en el stack
+28	addi sp, sp,4		#libero el espacio que ocupaba la ultima palabra insertada en el stack
+2C	ret			#vuelvo al ra
 
 a) Posiciones de memoria de cada etiqueta:
 fin 		0x0000000C
@@ -159,6 +159,17 @@ g) (Se asume que todos los valores siguientes están en hexa):
 00 -> 04 -> 08 (salta a resta)-> 10 -> 14 -> 18 -> 1C (no se verifica a0 == zero) -> 20 (salta a resta)
 -> 10 -> 14 -> 18 -> 1C (se verifica a0 == zero, por eso salta a epilogo) -> 24 -> 28 -> 2C (vuelve al ultimo ra insertado, es decir el 20 + 4)
 -> 24 -> 28 -> 2C (vuelve al ultimo ra insertado, es decir el 08 + 4) -> 0C -> 0C -> ... -> 0C
+
+h)Al inicio el valor de ra y sp es indistinto. En la instrucción 08 el ra pasa a ser 0C (08 + 4), en la 0C se dispone de espacio en el stack y con eso alteramos el sp.
+Alojamos el valor del ra en la posición disponibilizada (el sp apunta a esta dirección en esta instancia de la ejecución.
+Eventualmente el pc está en 20 (instrucción del sigo) y el ra se modifica a 24 (por eso era importante guardar el valor anterior de ra en el stack).
+Se procede a hacer espacio para una palabra más en el stack y se guarda la dirección 0x24 en dicho espacio (el sp apunta ahora a este por ser el último insertado).
+En epilogo esta última dirección insertada en el stack se asigna al ra, se libera el espacio de stack antes ocupado por 0x24, 
+el ret hace volver a epilogo (pues ra es 0x24) y, otra vez, se asingna ra la dirección 0C (que guardamos antes) y liberamos el espacio del stack.
+EL ret nos manda a 0C (fin) y ra queda con 0C.
+
+
+
 
 
 
