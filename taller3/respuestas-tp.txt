@@ -171,6 +171,33 @@ El ret nos manda a 0C (fin) y ra queda con 0C.
 i)Habría que reemplazar la instrucción 04 por: srai a1, a0, 1
 (Un desplazamiento aritmético a la derecha en una posición es lo mismo que dividir por 2 el registro fuente a0).
 
+00400593
+0000 0000 0100 /0000 0/000 /0101 1/001 0011
+0005a603
+0000 0000 0000 /0101 1/010 /0110 0/000 0011
+
+3a)
+<main>:
+addi x11 x0 4	#asigno el valor cuatro (decimal) al registro x11 (a1)
+lw x12 0 x11	#asigno lo que hay en el espacio de memoria 0x4 a a2 (que es 0 por la suposición de que todo espacio de memoria no especificado es 0)
+addi x13 x0 4	#asigno 4 a a3
+lw x13 0 x13	#asigno 0 a a3
+lw x13 0 x13	#asigno 0 a a3
+beq x12 x13 -20 <main>	#Como a2 == a3 entonces vuelve a main
+
+<guardar>:
+lui x14 0xfffa6
+addi x14 x14 -1539
+add x12 x14 x12
+sw x11 40 x12
+
+<fin_programar>:
+addi x10 x0 0
+addi x17 x0 93
+ecall
+
+
+
 
 
 
