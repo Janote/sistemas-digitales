@@ -141,7 +141,7 @@ Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicio
 
 R5 : 0x00000006 = 0000 0000 0000 0000 0000 0000 0000 0000 0110
 
-Su mayor cifra significativa es el 0 , rellenara con 1' a la izquierda solo una vez porque el shamt == 1 
+Su mayor cifra significativa es el 0 , rellenara con 0' a la izquierda solo una vez porque el shamt == 1 
 
 R5 : 000000000000000000100000000011;
 
