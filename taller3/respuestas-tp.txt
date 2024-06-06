@@ -5,119 +5,147 @@
 10: fff28293
 14: 4012d293
 
-
-
 1)a
 
 // addi 
 
+00: 00700293
+
 000000000111 00000 000 00101 0010011
 
+immediate[11:0] rs1 000 rd   0010011 
 
-000000000111 00000 000 00101 0010011
+Operacion: addi
 
-Guarda el 7(valor inmediato) + lo que estaba en el registro 0 , que es cero. Entonces guarda en el registro 5 el 7.
+rs1: zero
+rd: registro 5
+inmediato: 7 
+
+Realiza la suma entre el inmediato, que es 7 mas lo que estaba en el registro 0 (que es cero siempre) y lo guarda en el registro 5.
+Tal que, el valor del registro 5 es 7.
 
 
 b)
 
+04: 00100313
+
 000000000001 00000 000 00110 0010011
 
+immediate[11:0] rs1 000 rd   0010011
 
-000000000001 00000 000 00110 0010011
+rs1: zero
+rd : registro 6
+inmediato: 1 
 
-El registro 6 sera el resultado de sumar 0 + 1 , donde 1 es el valor inmediato y cero es por el registro zero;
+Operacion: addi
+
+Descripcion de la ejecución:
+
+El valor del registro 6 sera el resultado de sumar el valor dentro del registro 0 (que es siempre 0) mas sumar el inmediato que es 1, 
+luego realiza la suma 0 + 1  y lo guarda en el mismo.
+
+c)
 
 
-
-
-c)0062f333
+08: 0062f333
 
 0000000 00110 00101 111 00110 0110011
 
+0000000 rs2 rs1 111 rd 0110011
 
-0000000 00110 00101 111 00110 0110011
+Operacion: and
+
+rs2: 00110 //6
+rs1: 00101 //5 
+rd:  00110 //6
+
+Descripcion de la ejecución:
 
 Guarda en el registro 6 ,la operacion logica bit a bit con el valor dentro del registro 6 que es 1 con el que 
-esta en el registro 5, que es 7. Guarda en el registro 6 , el resultado de la operacion que es 1
+esta en el registro 5, que es 7. Guarda en el registro 6 , el resultado de la operacion que es 1.
 
-
-
+D//
 
 0000 0000 0000 0000 0000 0000 0000 0000 0111 r5
 0000 0000 0000 0000 0000 0000 0000 0000 0001 r6 
 0000 0000 0000 0000 0000 0000 0000 0000 0001 r6 despues de la operacion
 
 
-
-
-
-
-
 d)
-00030463
+
+0c: 00030463
 
 
 0000000 00000 00110 000 01000 1100011 
 
+offset[12|10:5] rs2 rs1 000 offset[4:1|11] 1100011
 
-desgloso el offset:
+Operacion: beq
+rs2: registro zero
+rs1: registro 6
+
+Desgloso el offset:
 
 000000000100 : 4
 
+Descripcion de la ejecución:
 
 
-Si el  valor del registro zero == registro 6 (que es falso),  el pc apunta a su valor actual mas el offset , que es 4.
+Si el  valor del registro zero == registro 6 (que es falso),  el pc apunta a su valor actual mas el offset , que es 4, esto es lo mismo que saltar a la proxima instruccion
 
 
 Inmediato == offset: 00000000000100 = 4
 
-entonces el pc apunta a la proxima instruccion si se cumple la condicion o no.
+Entonces, el pc apunta a la proxima instruccion si se cumple la condicion o no.
 
 
 
 e)
 
-// tipo inmediato;
-
+10: fff28293
 
 
 111111111111 00101 000 00101 0010011
 
+immediate[11:0] rs1 000 rd   0010011
 
-// instruccion addi
+Operacion: addi
 
-el registro destino (r5) , sera lo que vale el r5(que es siete) + el inmediato, que es 2^12 + 2^11 + 2^10 + 2^... + 2^0 . = 8197 ; va ser r5= 8198
-esto lo hara sin importar si el registro 6 era igual  al registro cero, ya que el PC apuntaba all de todas formas.
+rs1: registro 5 
+rd : registro 5 
+inmediato : 0xFFF
 
 
+Descripcion de la ejecución: 
+
+El registro destino (r5) , sera lo que vale el r5(que es siete) + el inmediato, que es -1 , tal que r5 va ser igual a  6
+,esto lo hara sin importar si el registro 6 era igual  al registro cero, ya que el PC apuntaba alli de todas formas.
 
 
 f)
 
-
-4012d293
+14: 4012d293
 
 SRAI
 
 010000 000001 00101 101 00101 0010011
-010000 000001 00101 101 00101 0010011
+010000 shamt rs1 101 rd 0010011
 
+rd: registro 5
+rs1: registro 5 
+shamt = 1 
 
+Descripcion de la ejecución: 
 
+Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicion a la derecha el valor que tenia almacenado, que era 6(decimal)
 
+R5 : 0x00000006 = 0000 0000 0000 0000 0000 0000 0000 0000 0110
 
-Va a guardar en el registro 5, el resultado de mover 1(por el shamt =1 ) posicion a la derecha el valor que tenia almacenado, que era 8198(decimal)
+Su mayor cifra significativa es el 0 , rellenara con 1' a la izquierda solo una vez porque el shamt == 1 
 
-R5 : 0000000000000000001000000000011
+R5 : 000000000000000000100000000011;
 
-
-
-Su mayor cifra significativa es el 1 , rellenara con 1' a la izquierda solo una vez porque el shamt == 1 
-
-R5 : 100000000000000000100000000001;
-
-r5 = 2147483647
+r5 = 3 ; 
 
 
 2.
