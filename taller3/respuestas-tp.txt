@@ -166,7 +166,11 @@ Eventualmente el pc está en 20 (instrucción del sigo) y el ra se modifica a 24
 Se procede a hacer espacio para una palabra más en el stack y se guarda la dirección 0x24 en dicho espacio (el sp apunta ahora a este por ser el último insertado).
 En epilogo esta última dirección insertada en el stack se asigna al ra, se libera el espacio de stack antes ocupado por 0x24, 
 el ret hace volver a epilogo (pues ra es 0x24) y, otra vez, se asingna ra la dirección 0C (que guardamos antes) y liberamos el espacio del stack.
-EL ret nos manda a 0C (fin) y ra queda con 0C.
+El ret nos manda a 0C (fin) y ra queda con 0C.
+
+i)Habría que reemplazar la instrucción 04 por: srai a1, a0, 1
+(Un desplazamiento aritmético a la derecha en una posición es lo mismo que dividir por 2 el registro fuente a0).
+
 
 
 
